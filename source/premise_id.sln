@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prid", "prid\prid.csproj", "{51C1CB33-2615-426A-A9F4-0B0167617C71}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prid.lib", "prid.lib\prid.lib.csproj", "{51C1CB33-2615-426A-A9F4-0B0167617C71}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prid.tests", "prid.tests\prid.tests.csproj", "{62B6B69A-78C0-4B61-896C-8FD8EC9C9774}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "app", "app\app.csproj", "{A40A8895-2475-489F-B7CE-D7D50720A3EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "prid", "prid\prid.csproj", "{A40A8895-2475-489F-B7CE-D7D50720A3EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
