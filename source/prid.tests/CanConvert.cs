@@ -2,7 +2,7 @@
 using FluentAssertions;
 using System;
 
-namespace premise_id.tests
+namespace Prid.Tests
 {
     public class PridTests
     {
@@ -11,7 +11,7 @@ namespace premise_id.tests
         {
             const string unsupported = "æøå";
 
-            prid.Can_convert_all_characters_in(unsupported)
+            Prid.Can_convert_all_characters_in(unsupported)
                 .Should()
                 .Be(false);
         }
@@ -21,7 +21,7 @@ namespace premise_id.tests
         {
             const string supported = "stuv";
 
-            prid.Can_convert_all_characters_in(supported)
+            Prid.Can_convert_all_characters_in(supported)
                 .Should()
                 .Be(true);
         }
@@ -31,7 +31,7 @@ namespace premise_id.tests
         {
             const string supported = "STUV";
 
-            prid.Can_convert_all_characters_in(supported)
+            Prid.Can_convert_all_characters_in(supported)
                 .Should()
                 .Be(true);
         }
@@ -41,7 +41,7 @@ namespace premise_id.tests
         {
             const string supported = "0987654321abcdef";
 
-            prid.Can_convert_all_characters_in(supported)
+            Prid.Can_convert_all_characters_in(supported)
                 .Should()
                 .Be(true);
         }
@@ -52,7 +52,7 @@ namespace premise_id.tests
             const string too_long = "abcabcabacbacbdaccbaadbadcadbadcbacaadadcbcadbcadcbacd";
 
             var exception = Record.Exception(
-                () => _ = prid.Convert(too_long)
+                () => _ = Prid.Convert(too_long)
             );
 
             exception
@@ -73,7 +73,7 @@ namespace premise_id.tests
             const string unsupported = "kamelåså";
 
             var exception = Record.Exception(
-                () => _ = prid.Convert(unsupported)
+                () => _ = Prid.Convert(unsupported)
             );
 
             exception
@@ -101,7 +101,7 @@ namespace premise_id.tests
         {
             Guid the_expected_guid = new Guid(expected);
 
-            Guid result = prid.Convert(input);
+            Guid result = Prid.Convert(input);
 
             result
                 .Should()
@@ -118,7 +118,7 @@ namespace premise_id.tests
         {
             Guid the_prid = new Guid(input);
 
-            var result = prid.Deconvert(the_prid);
+            var result = Prid.Decode(the_prid);
 
             result
                 .Should()

@@ -1,66 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using premise_id;
 
-namespace app
+namespace Prid;
+
+static class Program
 {
-    static class Program
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        switch(args)
         {
-            if (args.Length == 0)
-            {
+            case { Length: 0 }:
                 Console.WriteLine("Please enter at least one string");
+                WriteHelp();
                 return;
-            }
-
-            IEnumerable<(string input, string output)> result;
-            if (args[0] == "-d")
-            {
+            case var help when help[0] == "-h" || help[0] == "--help":
+                WriteHelp();
+                return;
+            case var _ when args[0] == "-d":
                 Console.WriteLine("Decodes to");
-                result = DecodePrids(args.Skip(1));
-            }
-            else
-            {
+                foreach (var (input, output) in DecodePrids(args.Skip(1)))
+                {
+                    Console.WriteLine($"{input} - {output}");
+                }
+                return;
+            default:
                 Console.WriteLine("Encodes to");
-                result = EncodePrids(args);
-            }
-
-            foreach (var p in result)
-            {
-                Console.WriteLine($"{p.input} - {p.output}");
-            }
-        }
-
-        static IEnumerable<(string input, string output)> DecodePrids(
-            IEnumerable<string> args
-        )
-        {
-            return args
-                .Select(input =>
-                    (
-                        input,
-                        Guid.TryParse(input, out var guid)
-                            ? prid.Deconvert(guid)
-                            : "unable"
-                    )
-                );
-        }
-
-        static IEnumerable<(string input, string output)> EncodePrids(
-            IEnumerable<string> args
-        )
-        {
-            return args
-                .Select(
-                    _ => (
-                        input: _,
-                        output: prid.Can_convert_all_characters_in(_)
-                            ? prid.Convert(_).ToString()
-                            : "unable"
-                    )
-                );
+                foreach (var (input, output) in EncodePrids(args))
+                {
+                    Console.WriteLine($"{input} - {output}");
+                }
+                return;
         }
     }
+
+    static void WriteHelp()
+    {
+        Console.WriteLine("Usage: prid [-d] <string>...");
+        Console.WriteLine("  -d  Decode the given strings");
+    }
+
+    static IEnumerable<(string input, string output)> DecodePrids(
+        IEnumerable<string> args
+    ) => args
+            .Select(input =>
+                (
+                    input,
+                    Guid.TryParse(input, out var guid)
+                        ? Prid.Decode(guid)
+                        : "unable"
+                )
+            );
+
+    static IEnumerable<(string input, string output)> EncodePrids(
+        IEnumerable<string> args
+    ) => args
+            .Select(
+                _ => (
+                    input: _,
+                    output: Prid.Can_convert_all_characters_in(_)
+                        ? Prid.Convert(_).ToString()
+                        : "unable"
+                )
+            );
 }

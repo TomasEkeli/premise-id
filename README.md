@@ -33,7 +33,7 @@ However, if you're sick of guids you can encode small jokes in these.
 
 ## conversion table
 
-(see prid.libn/prid.cs for the actual code)
+(see `source/prid.lib/prid.cs` for the actual table in code)
 
 | char | value |
 |------|-------|
