@@ -24,6 +24,11 @@ However, if you're sick of guids you can encode small jokes in these.
 ./prid guids_are_not_human_readable
 # Encodes to
 # guids_are_not_human_readable - 6611d5a1-2e17-0746-1a4a-1712eadab2e0
+
+# decode back to the original string (ish, sometimes, often fails)
+./prid -d 6611d5a1-2e17-0746-1a4a-1712eadab2e0
+# Decodes to
+# 6611d5a1-2e17-0746-1a4a-1712eadab2e0 - guidsarenothumanreadable
 ```
 
 ## conversion table
@@ -91,7 +96,7 @@ dotnet publish -c Release -o out
 # Encodes to
 # the-thing-you-want-to-encode - 74e74117-6140-61aa-aa17-770e17c0de00
 #                                |||||||´ ||´| |´|´´´||´ |||||´||||
-#                                thethin  gy o uw    an  ttoen code
+#                                thethin  gy o u w   an  ttoen code
 ```
 
 PS: please don't use this for anything serious
