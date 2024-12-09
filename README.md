@@ -56,6 +56,8 @@ However, if you're sick of guids you can encode small jokes in these.
 
 whitespace and punctuation is removed, digits and a-f stay the same
 
+![sketch showing why the values were chosen](./images/premise-id.png)
+
 ## how to build
 
 ```bash
