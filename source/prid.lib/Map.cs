@@ -4,7 +4,7 @@ namespace Prid;
 
 public static class Map
 {
-    public static readonly Dictionary<char, string> Mappings =new()
+    public static readonly Dictionary<char, string> Mappings = new()
     {
         {'0', "0"},
         {'1', "1"},
@@ -56,4 +56,31 @@ public static class Map
         {'?', ""},
     };
 
+    public static readonly Dictionary<string, char> ReverseMappings = new()
+    {
+        {"aaa", 'w'},
+        {"1c", 'k'},
+        {"a4", 'm'},
+        {"17", 'n'},
+        {"12", 'r'},
+        {"61", 'u'},
+        {"aa", 'v'},
+        {"14", 'y'},
+        {"a", 'a'},
+        {"b", 'b'},
+        {"c", 'c'},
+        {"d", 'd'},
+        {"e", 'e'},
+        {"f", 'f'},
+        {"6", 'g'},
+        {"4", 'h'},
+        {"1", 'i'},
+        {"3", 'j'},
+        {"2", 'l'},
+        {"0", 'o'},
+        {"9", 'p'},
+        {"5", 's'},
+        {"7", 't'},
+        {"8", 'x'},
+    };
 }

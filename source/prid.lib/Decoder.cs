@@ -59,5 +59,4 @@ public static class Decoder
 
         return sb.ToString().TrimEnd('o');
     }
-
 }
