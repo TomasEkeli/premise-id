@@ -1,5 +1,6 @@
 ﻿using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Running;
+using Prid;
 
 var summary = BenchmarkRunner.Run<PridBenchmarks>();
 
@@ -31,8 +32,8 @@ public class PridBenchmarks
     public void Setup() => _guid = Guid.Parse(DecodeMe);
 
     [Benchmark]
-    public void ConvertPrid() => Prid.Prid.Convert(EncodeMe);
+    public void ConvertPrid() => Encoder.Encode(EncodeMe);
 
     [Benchmark]
-    public void DecodePrids() => Prid.Prid.Decode(_guid);
+    public void DecodePrids() => Decoder.Decode(_guid);
 }

@@ -11,7 +11,7 @@ namespace Prid.Tests
         {
             const string unsupported = "æøå";
 
-            Prid.Can_convert_all_characters_in(unsupported)
+            Encoder.Can_convert_all_characters_in(unsupported)
                 .Should()
                 .Be(false);
         }
@@ -21,7 +21,7 @@ namespace Prid.Tests
         {
             const string supported = "stuv";
 
-            Prid.Can_convert_all_characters_in(supported)
+            Encoder.Can_convert_all_characters_in(supported)
                 .Should()
                 .Be(true);
         }
@@ -31,7 +31,7 @@ namespace Prid.Tests
         {
             const string supported = "STUV";
 
-            Prid.Can_convert_all_characters_in(supported)
+            Encoder.Can_convert_all_characters_in(supported)
                 .Should()
                 .Be(true);
         }
@@ -41,7 +41,7 @@ namespace Prid.Tests
         {
             const string supported = "0987654321abcdef";
 
-            Prid.Can_convert_all_characters_in(supported)
+            Encoder.Can_convert_all_characters_in(supported)
                 .Should()
                 .Be(true);
         }
@@ -52,7 +52,7 @@ namespace Prid.Tests
             const string too_long = "abcabcabacbacbdaccbaadbadcadbadcbacaadadcbcadbcadcbacd";
 
             var exception = Record.Exception(
-                () => _ = Prid.Convert(too_long)
+                () => _ = Encoder.Encode(too_long)
             );
 
             exception
@@ -73,7 +73,7 @@ namespace Prid.Tests
             const string unsupported = "kamelåså";
 
             var exception = Record.Exception(
-                () => _ = Prid.Convert(unsupported)
+                () => _ = Encoder.Encode(unsupported)
             );
 
             exception
@@ -101,7 +101,7 @@ namespace Prid.Tests
         {
             Guid the_expected_guid = new Guid(expected);
 
-            Guid result = Prid.Convert(input);
+            Guid result = Encoder.Encode(input);
 
             result
                 .Should()
@@ -114,11 +114,13 @@ namespace Prid.Tests
         [InlineData("nottoolongsentences", "17077002-0176-5e17-7e17-ce5000000000")]
         [InlineData("whatuseisthis", "aaa4a761-5e15-7415-0000-000000000000")]
         [InlineData("nisjustentertaining", "17153615-7e17-7e12-7a11-711760000000")]
-        public void When_reifying_a_guid_to_a_string(string expected, string input)
+        public void When_decoding_a_guid_to_a_string(
+            string expected,
+            string input)
         {
             Guid the_prid = new Guid(input);
 
-            var result = Prid.Decode(the_prid);
+            var result = Decoder.Decode(the_prid);
 
             result
                 .Should()
