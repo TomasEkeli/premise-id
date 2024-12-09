@@ -33,8 +33,6 @@ However, if you're sick of guids you can encode small jokes in these.
 
 ## conversion table
 
-(see `source/prid.lib/prid.cs` for the actual table in code)
-
 | char | value |
 |------|-------|
 | '0'  | "0"   |
@@ -99,4 +97,4 @@ dotnet publish -c Release -o out
 #                                thethin  gy o u w   an  ttoen code
 ```
 
-PS: please don't use this for anything serious
+> PS: please don't use this for anything serious
