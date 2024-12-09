@@ -1,6 +1,4 @@
 using System;
-using System.Linq;
-using System.Text;
 
 namespace Prid;
 
@@ -8,55 +6,57 @@ public static class Decoder
 {
     public static string Decode(Guid prid)
     {
-        var as_string = prid
+        ReadOnlySpan<char> as_span = prid
             .ToString("N")
-            .ToLowerInvariant();
+            .ToLowerInvariant()
+            .AsSpan();
 
-        var reverse_mapping = Map.Mappings
-            .Skip(10)
-            .ToList()
-            .OrderByDescending(_ => _.Value.Length);
-
-        var sb = new StringBuilder();
-
-        for (int i = 0; i < as_string.Length; i++)
+        var result = new char[as_span.Length];
+        var result_index = 0;
+        for (int i = 0; i < as_span.Length; i++)
         {
-            if (as_string[i] == 'a'
-                && i + 2 < as_string.Length
-                && as_string[i + 1] == 'a'
-                && as_string[i + 2] == 'a')
+            var range_to = i + 3;
+            if (i + 2 < as_span.Length
+                && as_span[i .. range_to].SequenceEqual("aaa"))
             {
-                sb.Append('w');
+                result[result_index++] = 'w';
                 i += 2;
                 continue;
             }
 
-            if (i + 1 < as_string.Length
-                && reverse_mapping
-                    .Any(_ =>
-                        _.Value == as_string.Substring(i, 2)
-                    )
-            )
+            range_to = i + 2;
+            if (range_to < as_span.Length)
             {
-                sb.Append(
-                    reverse_mapping
-                        .First(_ =>
-                            _.Value == as_string.Substring(i, 2)
-                        )
-                        .Key
-                );
+                var candidate = as_span[i .. range_to];
 
-                i++;
-                continue;
+                var double_hit = Map
+                    .ReverseMappings
+                    .TryGetValue(
+                        candidate.ToString(),
+                        out var double_match
+                    );
+
+                if (double_hit)
+                {
+                    result[result_index++] = double_match;
+                    i++;
+                    continue;
+                }
             }
 
-            sb.Append(
-                reverse_mapping
-                    .First(_ => _.Value == $"{as_string[i]}")
-                    .Key
-            );
+            var hit = Map
+                .ReverseMappings
+                .TryGetValue(
+                    as_span[i].ToString(),
+                    out var single_match
+                );
+
+            if (hit)
+            {
+                result[result_index++] = single_match;
+            }
         }
 
-        return sb.ToString().TrimEnd('o');
+        return new string(result, 0, result_index).TrimEnd('o');
     }
 }
