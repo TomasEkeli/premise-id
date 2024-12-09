@@ -7,9 +7,9 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/source/prid.tests/prid.tests.csproj",
+                "${workspaceFolder}/premise_id.sln",
                 "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -19,9 +19,9 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/source/prid.tests/prid.tests.csproj",
+                "${workspaceFolder}/premise_id.sln",
                 "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -32,9 +32,8 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/source/prid.tests/prid.tests.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "--project",
+                "${workspaceFolder}/premise_id.sln"
             ],
             "problemMatcher": "$msCompile"
         }

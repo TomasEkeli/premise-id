@@ -1,13 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
   <ItemGroup>
     <ProjectReference Include="..\prid.lib\prid.lib.csproj" />
   </ItemGroup>
-
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <AssemblyName>prid</AssemblyName>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
   </PropertyGroup>
-
 </Project>
