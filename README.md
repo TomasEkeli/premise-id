@@ -35,22 +35,6 @@ However, if you're sick of guids you can encode small jokes in these.
 
 | char | value |
 |------|-------|
-| '0'  | "0"   |
-| '1'  | "1"   |
-| '2'  | "2"   |
-| '3'  | "3"   |
-| '4'  | "4"   |
-| '5'  | "5"   |
-| '6'  | "6"   |
-| '7'  | "7"   |
-| '8'  | "8"   |
-| '9'  | "9"   |
-| 'a'  | "a"   |
-| 'b'  | "b"   |
-| 'c'  | "c"   |
-| 'd'  | "d"   |
-| 'e'  | "e"   |
-| 'f'  | "f"   |
 | 'g'  | "6"   |
 | 'h'  | "4"   |
 | 'i'  | "1"   |
@@ -70,7 +54,7 @@ However, if you're sick of guids you can encode small jokes in these.
 | 'x'  | "8"   |
 | 'y'  | "14"  |
 
-whitespace and punctuation is removed
+whitespace and punctuation is removed, digits and a-f stay the same
 
 ## how to build
 
