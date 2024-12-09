@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>PridBenchmarks-20241209-205701</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; text-align: right; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet v0.14.0, Debian GNU/Linux 12 (bookworm) (container)
+12th Gen Intel Core i7-1260P, 1 CPU, 16 logical and 8 physical cores
+.NET SDK 9.0.100-rc.2.24474.11
+  [Host]     : .NET 9.0.0 (9.0.24.47305), X64 RyuJIT AVX2
+  DefaultJob : .NET 9.0.0 (9.0.24.47305), X64 RyuJIT AVX2
+</code></pre>
+<pre><code></code></pre>
+
+<table>
+<thead><tr><th>Method  </th><th>EncodeMe      </th><th>DecodeMe      </th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Gen0</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>Encode_strings</td><td>I can(...) IDs. [31]</td><td>17077(...)00000 [36]</td><td>645.8 ns</td><td>11.99 ns</td><td>11.77 ns</td><td>646.3 ns</td><td>0.0639</td><td>608 B</td>
+</tr><tr><td>Decode_guids</td><td>I can(...) IDs. [31]</td><td>17077(...)00000 [36]</td><td>911.0 ns</td><td>14.61 ns</td><td>12.95 ns</td><td>913.0 ns</td><td>0.1831</td><td>1728 B</td>
+</tr><tr><td>Encode_strings</td><td>I can(...) IDs. [31]</td><td>1c1a1(...)701d5 [32]</td><td>636.5 ns</td><td>11.53 ns</td><td>13.73 ns</td><td>637.4 ns</td><td>0.0639</td><td>608 B</td>
+</tr><tr><td>Decode_guids</td><td>I can(...) IDs. [31]</td><td>1c1a1(...)701d5 [32]</td><td>731.6 ns</td><td>11.01 ns</td><td>9.76 ns</td><td>731.6 ns</td><td>0.1497</td><td>1416 B</td>
+</tr><tr><td>Encode_strings</td><td>I can(...) IDs. [31]</td><td>1ca17(...)01d50 [32]</td><td>627.6 ns</td><td>10.54 ns</td><td>9.86 ns</td><td>628.0 ns</td><td>0.0639</td><td>608 B</td>
+</tr><tr><td>Decode_guids</td><td>I can(...) IDs. [31]</td><td>1ca17(...)01d50 [32]</td><td>735.9 ns</td><td>13.43 ns</td><td>12.57 ns</td><td>733.2 ns</td><td>0.1574</td><td>1488 B</td>
+</tr><tr><td>Encode_strings</td><td>I can(...) IDs. [31]</td><td>74151(...)00000 [32]</td><td>629.0 ns</td><td>10.69 ns</td><td>9.47 ns</td><td>628.5 ns</td><td>0.0639</td><td>608 B</td>
+</tr><tr><td>Decode_guids</td><td>I can(...) IDs. [31]</td><td>74151(...)00000 [32]</td><td>959.3 ns</td><td>9.76 ns</td><td>8.65 ns</td><td>961.8 ns</td><td>0.1984</td><td>1872 B</td>
+</tr><tr><td>Encode_strings</td><td>I can(...) IDs. [31]</td><td>aaa4a(...)00000 [36]</td><td>632.5 ns</td><td>12.70 ns</td><td>13.59 ns</td><td>631.7 ns</td><td>0.0639</td><td>608 B</td>
+</tr><tr><td>Decode_guids</td><td>I can(...) IDs. [31]</td><td>aaa4a(...)00000 [36]</td><td>930.3 ns</td><td>17.26 ns</td><td>15.30 ns</td><td>927.0 ns</td><td>0.1888</td><td>1784 B</td>
+</tr><tr><td>Encode_strings</td><td>It is(...)ning. [24]</td><td>17077(...)00000 [36]</td><td>510.7 ns</td><td>8.62 ns</td><td>7.65 ns</td><td>511.1 ns</td><td>0.0553</td><td>528 B</td>
+</tr><tr><td>Decode_guids</td><td>It is(...)ning. [24]</td><td>17077(...)00000 [36]</td><td>917.7 ns</td><td>17.94 ns</td><td>40.85 ns</td><td>903.5 ns</td><td>0.1831</td><td>1728 B</td>
+</tr><tr><td>Encode_strings</td><td>It is(...)ning. [24]</td><td>1c1a1(...)701d5 [32]</td><td>518.1 ns</td><td>7.37 ns</td><td>6.90 ns</td><td>519.4 ns</td><td>0.0553</td><td>528 B</td>
+</tr><tr><td>Decode_guids</td><td>It is(...)ning. [24]</td><td>1c1a1(...)701d5 [32]</td><td>734.2 ns</td><td>8.77 ns</td><td>8.20 ns</td><td>736.7 ns</td><td>0.1497</td><td>1416 B</td>
+</tr><tr><td>Encode_strings</td><td>It is(...)ning. [24]</td><td>1ca17(...)01d50 [32]</td><td>527.1 ns</td><td>9.14 ns</td><td>8.55 ns</td><td>525.9 ns</td><td>0.0553</td><td>528 B</td>
+</tr><tr><td>Decode_guids</td><td>It is(...)ning. [24]</td><td>1ca17(...)01d50 [32]</td><td>765.2 ns</td><td>14.68 ns</td><td>13.73 ns</td><td>766.6 ns</td><td>0.1574</td><td>1488 B</td>
+</tr><tr><td>Encode_strings</td><td>It is(...)ning. [24]</td><td>74151(...)00000 [32]</td><td>513.2 ns</td><td>10.04 ns</td><td>12.69 ns</td><td>512.6 ns</td><td>0.0553</td><td>528 B</td>
+</tr><tr><td>Decode_guids</td><td>It is(...)ning. [24]</td><td>74151(...)00000 [32]</td><td>976.3 ns</td><td>19.28 ns</td><td>25.73 ns</td><td>976.8 ns</td><td>0.1984</td><td>1872 B</td>
+</tr><tr><td>Encode_strings</td><td>It is(...)ning. [24]</td><td>aaa4a(...)00000 [36]</td><td>516.7 ns</td><td>10.16 ns</td><td>9.98 ns</td><td>514.9 ns</td><td>0.0553</td><td>528 B</td>
+</tr><tr><td>Decode_guids</td><td>It is(...)ning. [24]</td><td>aaa4a(...)00000 [36]</td><td>932.0 ns</td><td>18.51 ns</td><td>18.18 ns</td><td>930.5 ns</td><td>0.1888</td><td>1784 B</td>
+</tr><tr><td>Encode_strings</td><td>Not t(...)nces. [23]</td><td>17077(...)00000 [36]</td><td>478.8 ns</td><td>4.83 ns</td><td>4.52 ns</td><td>479.7 ns</td><td>0.0558</td><td>528 B</td>
+</tr><tr><td>Decode_guids</td><td>Not t(...)nces. [23]</td><td>17077(...)00000 [36]</td><td>899.8 ns</td><td>17.92 ns</td><td>21.33 ns</td><td>901.9 ns</td><td>0.1831</td><td>1728 B</td>
+</tr><tr><td>Encode_strings</td><td>Not t(...)nces. [23]</td><td>1c1a1(...)701d5 [32]</td><td>488.3 ns</td><td>9.52 ns</td><td>11.69 ns</td><td>485.2 ns</td><td>0.0553</td><td>528 B</td>
+</tr><tr><td>Decode_guids</td><td>Not t(...)nces. [23]</td><td>1c1a1(...)701d5 [32]</td><td>737.1 ns</td><td>13.65 ns</td><td>12.77 ns</td><td>735.4 ns</td><td>0.1497</td><td>1416 B</td>
+</tr><tr><td>Encode_strings</td><td>Not t(...)nces. [23]</td><td>1ca17(...)01d50 [32]</td><td>487.1 ns</td><td>9.56 ns</td><td>15.16 ns</td><td>486.2 ns</td><td>0.0553</td><td>528 B</td>
+</tr><tr><td>Decode_guids</td><td>Not t(...)nces. [23]</td><td>1ca17(...)01d50 [32]</td><td>741.2 ns</td><td>12.30 ns</td><td>11.50 ns</td><td>743.3 ns</td><td>0.1574</td><td>1488 B</td>
+</tr><tr><td>Encode_strings</td><td>Not t(...)nces. [23]</td><td>74151(...)00000 [32]</td><td>485.8 ns</td><td>6.19 ns</td><td>5.79 ns</td><td>486.4 ns</td><td>0.0553</td><td>528 B</td>
+</tr><tr><td>Decode_guids</td><td>Not t(...)nces. [23]</td><td>74151(...)00000 [32]</td><td>971.0 ns</td><td>17.29 ns</td><td>18.50 ns</td><td>967.4 ns</td><td>0.1984</td><td>1872 B</td>
+</tr><tr><td>Encode_strings</td><td>Not t(...)nces. [23]</td><td>aaa4a(...)00000 [36]</td><td>484.1 ns</td><td>9.59 ns</td><td>9.42 ns</td><td>482.6 ns</td><td>0.0553</td><td>528 B</td>
+</tr><tr><td>Decode_guids</td><td>Not t(...)nces. [23]</td><td>aaa4a(...)00000 [36]</td><td>932.8 ns</td><td>18.47 ns</td><td>19.76 ns</td><td>926.2 ns</td><td>0.1888</td><td>1784 B</td>
+</tr><tr><td>Encode_strings</td><td>This is fun!</td><td>17077(...)00000 [36]</td><td>363.4 ns</td><td>5.88 ns</td><td>5.21 ns</td><td>363.5 ns</td><td>0.0429</td><td>408 B</td>
+</tr><tr><td>Decode_guids</td><td>This is fun!</td><td>17077(...)00000 [36]</td><td>937.7 ns</td><td>16.62 ns</td><td>23.30 ns</td><td>935.1 ns</td><td>0.1831</td><td>1728 B</td>
+</tr><tr><td>Encode_strings</td><td>This is fun!</td><td>1c1a1(...)701d5 [32]</td><td>365.8 ns</td><td>5.49 ns</td><td>4.87 ns</td><td>366.3 ns</td><td>0.0429</td><td>408 B</td>
+</tr><tr><td>Decode_guids</td><td>This is fun!</td><td>1c1a1(...)701d5 [32]</td><td>738.5 ns</td><td>11.06 ns</td><td>10.35 ns</td><td>739.7 ns</td><td>0.1497</td><td>1416 B</td>
+</tr><tr><td>Encode_strings</td><td>This is fun!</td><td>1ca17(...)01d50 [32]</td><td>353.5 ns</td><td>2.78 ns</td><td>2.17 ns</td><td>354.2 ns</td><td>0.0429</td><td>408 B</td>
+</tr><tr><td>Decode_guids</td><td>This is fun!</td><td>1ca17(...)01d50 [32]</td><td>740.5 ns</td><td>5.17 ns</td><td>4.32 ns</td><td>740.4 ns</td><td>0.1574</td><td>1488 B</td>
+</tr><tr><td>Encode_strings</td><td>This is fun!</td><td>74151(...)00000 [32]</td><td>357.1 ns</td><td>5.29 ns</td><td>4.95 ns</td><td>358.7 ns</td><td>0.0429</td><td>408 B</td>
+</tr><tr><td>Decode_guids</td><td>This is fun!</td><td>74151(...)00000 [32]</td><td>984.4 ns</td><td>19.31 ns</td><td>18.97 ns</td><td>981.1 ns</td><td>0.1984</td><td>1872 B</td>
+</tr><tr><td>Encode_strings</td><td>This is fun!</td><td>aaa4a(...)00000 [36]</td><td>353.2 ns</td><td>6.98 ns</td><td>6.85 ns</td><td>354.7 ns</td><td>0.0429</td><td>408 B</td>
+</tr><tr><td>Decode_guids</td><td>This is fun!</td><td>aaa4a(...)00000 [36]</td><td>915.1 ns</td><td>18.03 ns</td><td>21.46 ns</td><td>912.8 ns</td><td>0.1888</td><td>1784 B</td>
+</tr><tr><td>Encode_strings</td><td>What use is this?</td><td>17077(...)00000 [36]</td><td>393.9 ns</td><td>5.49 ns</td><td>4.87 ns</td><td>396.3 ns</td><td>0.0491</td><td>464 B</td>
+</tr><tr><td>Decode_guids</td><td>What use is this?</td><td>17077(...)00000 [36]</td><td>903.2 ns</td><td>17.26 ns</td><td>19.18 ns</td><td>901.1 ns</td><td>0.1831</td><td>1728 B</td>
+</tr><tr><td>Encode_strings</td><td>What use is this?</td><td>1c1a1(...)701d5 [32]</td><td>396.4 ns</td><td>5.61 ns</td><td>5.25 ns</td><td>396.4 ns</td><td>0.0491</td><td>464 B</td>
+</tr><tr><td>Decode_guids</td><td>What use is this?</td><td>1c1a1(...)701d5 [32]</td><td>727.0 ns</td><td>7.70 ns</td><td>7.20 ns</td><td>726.4 ns</td><td>0.1497</td><td>1416 B</td>
+</tr><tr><td>Encode_strings</td><td>What use is this?</td><td>1ca17(...)01d50 [32]</td><td>392.2 ns</td><td>6.19 ns</td><td>5.79 ns</td><td>391.3 ns</td><td>0.0491</td><td>464 B</td>
+</tr><tr><td>Decode_guids</td><td>What use is this?</td><td>1ca17(...)01d50 [32]</td><td>744.4 ns</td><td>12.62 ns</td><td>11.19 ns</td><td>746.0 ns</td><td>0.1574</td><td>1488 B</td>
+</tr><tr><td>Encode_strings</td><td>What use is this?</td><td>74151(...)00000 [32]</td><td>406.2 ns</td><td>5.61 ns</td><td>4.97 ns</td><td>405.8 ns</td><td>0.0491</td><td>464 B</td>
+</tr><tr><td>Decode_guids</td><td>What use is this?</td><td>74151(...)00000 [32]</td><td>985.1 ns</td><td>19.18 ns</td><td>17.94 ns</td><td>987.8 ns</td><td>0.1984</td><td>1872 B</td>
+</tr><tr><td>Encode_strings</td><td>What use is this?</td><td>aaa4a(...)00000 [36]</td><td>395.8 ns</td><td>6.34 ns</td><td>5.93 ns</td><td>396.6 ns</td><td>0.0491</td><td>464 B</td>
+</tr><tr><td>Decode_guids</td><td>What use is this?</td><td>aaa4a(...)00000 [36]</td><td>920.5 ns</td><td>17.88 ns</td><td>25.64 ns</td><td>919.3 ns</td><td>0.1888</td><td>1784 B</td>
+</tr></tbody></table>
+</body>
+</html>
