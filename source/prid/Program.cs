@@ -50,10 +50,13 @@ static IEnumerable<(string input, string output)> EncodePrids(
     IEnumerable<string> args
 ) => args
     .Select(
-        _ => (
-            input: _,
-            output: Encoder.Can_convert_all_characters_in(_)
-                ? Encoder.Encode(_).ToString()
-                : "unable"
+        value => (
+            input: value,
+            output: Encoder
+                .Encode(value)
+                .Match(
+                    guid => guid.ToString(),
+                    error => error.Value.Message
+                )
         )
     );

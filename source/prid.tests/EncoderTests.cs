@@ -11,9 +11,11 @@ public class EncoderTests
     {
         const string unsupported = "æøå";
 
-        Encoder.Can_convert_all_characters_in(unsupported)
+        Encoder
+            .Find_problematic_characters(unsupported)
+            .ToString()
             .Should()
-            .Be(false);
+            .Contain(unsupported);
     }
 
     [Fact]
@@ -21,9 +23,11 @@ public class EncoderTests
     {
         const string supported = "stuv";
 
-        Encoder.Can_convert_all_characters_in(supported)
+        Encoder
+            .Find_problematic_characters(supported)
+            .ToString()
             .Should()
-            .Be(true);
+            .BeEmpty();
     }
 
     [Fact]
@@ -31,9 +35,11 @@ public class EncoderTests
     {
         const string supported = "STUV";
 
-        Encoder.Can_convert_all_characters_in(supported)
+        Encoder
+            .Find_problematic_characters(supported)
+            .ToString()
             .Should()
-            .Be(true);
+            .BeEmpty();
     }
 
     [Fact]
@@ -41,52 +47,57 @@ public class EncoderTests
     {
         const string supported = "0987654321abcdef";
 
-        Encoder.Can_convert_all_characters_in(supported)
+        Encoder
+            .Find_problematic_characters(supported)
+            .ToString()
             .Should()
-            .Be(true);
+            .BeEmpty();
     }
 
     [Fact]
-    public void When_converting_a_too_long_string()
-    {
-        const string too_long = "abcabcabacbacbdaccbaadbadcadbadcbacaadadcbcadbcadcbacd";
+    public void When_converting_a_too_long_string() =>
+        Encoder
+            .Encode("abcabcabacbacbdaccbaadbadcadbadcbacaadadcbcadbcadcbacd")
+            .Switch(
+                surprise_success => throw new InvalidOperationException(),
+                expected_error =>
+                {
+                    expected_error.Value
+                        .Should()
+                        .BeOfType<TooLong>();
 
-        var exception = Record.Exception(
-            () => _ = Encoder.Encode(too_long)
-        );
-
-        exception
-            .Should()
-            .BeOfType<TooLong>();
-
-        exception
-            .Message
-            .Should()
-            .Be(
-                $"The value '{too_long}' cannot fit in a GUID, it is too large."
+                    expected_error
+                        .Value
+                        .Message
+                        .Should()
+                        .Be(
+                            "The value 'abcabcabacbacbdaccbaadbadcadbadcbacaadadcbcadbcadcbacd' "
+                            + "cannot fit in a GUID, it is too large."
+                        );
+                }
             );
-    }
 
     [Fact]
-    public void When_converting_a_string_with_unsupported_characters()
-    {
-        const string unsupported = "kamelåså";
+    public void When_converting_a_string_with_unsupported_characters() =>
+        Encoder
+            .Encode("kamelåså")
+            .Switch(
+                surprise_success => throw new InvalidOperationException(),
+                expected_error =>
+                {
+                    expected_error.Value
+                        .Should()
+                        .BeOfType<UnsupportedCharacters>();
 
-        var exception = Record.Exception(
-            () => _ = Encoder.Encode(unsupported)
-        );
-
-        exception
-            .Should()
-            .BeOfType<UnsupportedCharacters>();
-
-        exception
-            .Message
-            .Should()
-            .Be(
-                $"The value '{unsupported}' contains unsupported characters."
+                    expected_error
+                        .Value
+                        .Message
+                        .Should()
+                        .Be(
+                            $"Contains unsupported characters: åå."
+                        );
+                }
             );
-    }
 
     [Theory]
     [InlineData("This is fun!", "741515f6117000000000000000000000")]
@@ -101,7 +112,7 @@ public class EncoderTests
     {
         Guid the_expected_guid = new Guid(expected);
 
-        Guid result = Encoder.Encode(input);
+        Guid result = Encoder.Encode(input).AsT0;
 
         result
             .Should()

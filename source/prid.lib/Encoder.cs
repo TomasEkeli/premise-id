@@ -1,29 +1,39 @@
 using System;
 using System.Linq;
+using OneOf;
+using OneOf.Types;
 
 namespace Prid;
 
 public static class Encoder
 {
-    public static bool Can_convert_all_characters_in(
+    public static Span<char> Find_problematic_characters(
         string candidate
     ) =>
         candidate
             .ToLowerInvariant()
             .ToCharArray()
-            .All(_ => Map.Mappings.ContainsKey(_));
+            .Where(_ => !Map.Mappings.ContainsKey(_))
+            .ToArray();
 
-    public static Guid Encode(string value)
+    public static OneOf<Guid, Error<Exception>> Encode(string value)
     {
-        if (!Can_convert_all_characters_in(value))
+        var problematic = Find_problematic_characters(value);
+        if (problematic.Length > 0)
         {
-            throw new UnsupportedCharacters(value);
+            return new Error<Exception>(
+                new UnsupportedCharacters(
+                    problematic.ToString()
+                )
+            );
         }
         var as_legal_characters = Convert_to_legal(value);
 
         if (as_legal_characters.Length > 31)
         {
-            throw new TooLong(value);
+            return new Error<Exception>(
+                new TooLong(value)
+            );
         }
 
         return new Guid(
