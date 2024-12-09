@@ -57,7 +57,7 @@ public class EncoderTests
 
         exception
             .Should()
-            .BeOfType<ValueTooLongToFitInGuid>();
+            .BeOfType<TooLong>();
 
         exception
             .Message
@@ -78,7 +78,7 @@ public class EncoderTests
 
         exception
             .Should()
-            .BeOfType<ValueContainsUnsupportedCharacters>();
+            .BeOfType<UnsupportedCharacters>();
 
         exception
             .Message

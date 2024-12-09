@@ -5,7 +5,9 @@ namespace Prid;
 
 public static class Encoder
 {
-    public static bool Can_convert_all_characters_in(string candidate) =>
+    public static bool Can_convert_all_characters_in(
+        string candidate
+    ) =>
         candidate
             .ToLowerInvariant()
             .ToCharArray()
@@ -15,16 +17,18 @@ public static class Encoder
     {
         if (!Can_convert_all_characters_in(value))
         {
-            throw new ValueContainsUnsupportedCharacters(value);
+            throw new UnsupportedCharacters(value);
         }
         var as_legal_characters = Convert_to_legal(value);
 
         if (as_legal_characters.Length > 31)
         {
-            throw new ValueTooLongToFitInGuid(value);
+            throw new TooLong(value);
         }
 
-        return new Guid(as_legal_characters.PadRight(32, '0'));
+        return new Guid(
+            as_legal_characters.PadRight(32, '0')
+        );
     }
 
     static string Convert_to_legal(string value) =>
