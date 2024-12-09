@@ -56,7 +56,7 @@ static IEnumerable<(string input, string output)> EncodePrids(
                 .Encode(value)
                 .Match(
                     guid => guid.ToString(),
-                    error => error.Value.Message
+                    error => error
                 )
         )
     );

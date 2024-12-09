@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using OneOf;
-using OneOf.Types;
 
 namespace Prid;
 
@@ -16,24 +15,19 @@ public static class Encoder
             .Where(_ => !Map.Mappings.ContainsKey(_))
             .ToArray();
 
-    public static OneOf<Guid, Error<Exception>> Encode(string value)
+    public static OneOf<Guid, string> Encode(string value)
     {
         var problematic = Find_problematic_characters(value);
         if (problematic.Length > 0)
         {
-            return new Error<Exception>(
-                new UnsupportedCharacters(
-                    problematic.ToString()
-                )
-            );
+            return $@"Contains unsupported characters: {problematic}.";
         }
         var as_legal_characters = Convert_to_legal(value);
 
         if (as_legal_characters.Length > 31)
         {
-            return new Error<Exception>(
-                new TooLong(value)
-            );
+            return $@"The value '{value
+                }' cannot fit in a GUID, it is too large.";
         }
 
         return new Guid(

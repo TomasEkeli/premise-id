@@ -62,13 +62,7 @@ public class EncoderTests
                 surprise_success => throw new InvalidOperationException(),
                 expected_error =>
                 {
-                    expected_error.Value
-                        .Should()
-                        .BeOfType<TooLong>();
-
                     expected_error
-                        .Value
-                        .Message
                         .Should()
                         .Be(
                             "The value 'abcabcabacbacbdaccbaadbadcadbadcbacaadadcbcadbcadcbacd' "
@@ -85,13 +79,7 @@ public class EncoderTests
                 surprise_success => throw new InvalidOperationException(),
                 expected_error =>
                 {
-                    expected_error.Value
-                        .Should()
-                        .BeOfType<UnsupportedCharacters>();
-
                     expected_error
-                        .Value
-                        .Message
                         .Should()
                         .Be(
                             $"Contains unsupported characters: åå."
